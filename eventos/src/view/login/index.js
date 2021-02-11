@@ -1,22 +1,27 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import firebase from '../../config/firebase';
+import { toast } from 'react-toastify';
 import 'firebase/auth';
 import './login.css'
+import { connected } from 'process';
 
 const Login = () => {
 
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
+    const [msglogin, setMsgLogin] = useState();
 
 
-    const logar =()=> {
+    const logar = () => {
 
         firebase.auth().signInWithEmailAndPassword(email, senha)
-        .then(response =>{
-            alert("Usuario Logado");
-        }).catch(error => {
-            alert(error);
-        });
+            .then(response => {
+                toast.info("Conexão realizada com sucesso!");
+                setMsgLogin('connected')
+            }).catch(error => {
+                toast("Erro de conexão. Verifique o email e a senha cadastrados!");
+                setMsgLogin('connectFail')
+            });
 
     }
 
@@ -27,25 +32,21 @@ const Login = () => {
                     <h1 className="h3 mb-3 font-weight-normal text-white font-weight-bold">Login</h1>
                 </div>
 
-                <input onChange={(event)=> setEmail(event.target.value)} type="email" id="inputEmail" className="form-control my-2" placeholder="Email" />
-                <input onChange={(event)=> setSenha(event.target.value)} type="password" id="inputPassword" className="form-control my-2" placeholder="Senha" />
+                <input onChange={(event) => setEmail(event.target.value)} type="email" id="inputEmail" className="form-control my-2" placeholder="Email" />
+                <input onChange={(event) => setSenha(event.target.value)} type="password" id="inputPassword" className="form-control my-2" placeholder="Senha" />
                 <div className="d-flex justify-content-center">
-                <button onClick={logar} className="btn btn-lg btn-block btn-login d-flex justify-content-center mt-2" type="button" >Logar</button>
+                    <button onClick={logar} className="btn btn-lg btn-block btn-login d-flex justify-content-center mt-2" type="button" >Logar</button>
                 </div>
 
                 <div className="msg-login text-white text-center my-5">
-                    <span><strong>WOW!</strong> You are connected! &#128526;</span>
-                    <br/>
-                    <span><strong>Ops!</strong> Invalid Email or password! &#128532;</span>
-
+                    {msglogin === ('connected') && <span><strong>WOW!</strong> You are connected! &#128526;</span>}
+                    {msglogin === ('connectFail') && <span>  <strong>Ops!</strong>  Invalid Email or password! &#128532; </span>}
                 </div>
                 <div className="login-options mt-5">
-                <a href="#" className="mx-2">Recuperar Senha</a>
-                <span className="text-white">&#9733;</span>
-                <a href="#" className="mx-2">Quero Cadastrar</a>
+                    <a href="#" className="mx-2">Recuperar Senha</a>
+                    <span className="text-white">&#9733;</span>
+                    <a href="#" className="mx-2">Quero Cadastrar</a>
                 </div>
-                
-
             </form>
         </div>
     );
