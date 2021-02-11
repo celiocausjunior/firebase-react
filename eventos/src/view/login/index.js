@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import firebase from '../../config/firebase';
 import { toast } from 'react-toastify';
+import firebase from '../../config/firebase';
 import 'firebase/auth';
 import './login.css'
-import { connected } from 'process';
 
 const Login = () => {
 
@@ -19,7 +18,7 @@ const Login = () => {
                 toast.info("Conexão realizada com sucesso!");
                 setMsgLogin('connected')
             }).catch(error => {
-                toast("Erro de conexão. Verifique o email e a senha cadastrados!");
+                toast.error("Erro de conexão. Verifique o email e a senha cadastrados!");
                 setMsgLogin('connectFail')
             });
 
