@@ -1,7 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
+import firebase from '../../config/firebase';
+import 'firebase/auth';
 import './login.css'
 
 const Login = () => {
+
+    const [email, setEmail] = useState();
+    const [senha, setSenha] = useState();
+
+
+    const logar =()=> {
+
+        firebase.auth().signInWithEmailAndPassword(email, senha)
+        .then(response =>{
+            alert("Usuario Logado");
+        }).catch(error => {
+            alert(error);
+        });
+
+    }
+
     return (
         <div className="login-content d-flex align-items-center">
             <form className="form-signin mx-auto">
@@ -9,10 +27,10 @@ const Login = () => {
                     <h1 className="h3 mb-3 font-weight-normal text-white font-weight-bold">Login</h1>
                 </div>
 
-                <input type="email" id="inputEmail" className="form-control my-2" placeholder="Email" />
-                <input type="password" id="inputPassword" className="form-control my-2" placeholder="Senha" />
+                <input onChange={(event)=> setEmail(event.target.value)} type="email" id="inputEmail" className="form-control my-2" placeholder="Email" />
+                <input onChange={(event)=> setSenha(event.target.value)} type="password" id="inputPassword" className="form-control my-2" placeholder="Senha" />
                 <div className="d-flex justify-content-center">
-                <button className="btn btn-lg btn-block btn-login d-flex justify-content-center mt-2" type="submit" >Sign in</button>
+                <button onClick={logar} className="btn btn-lg btn-block btn-login d-flex justify-content-center mt-2" type="button" >Logar</button>
                 </div>
 
                 <div className="msg-login text-white text-center my-5">
