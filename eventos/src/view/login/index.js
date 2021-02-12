@@ -17,7 +17,8 @@ const Login = () => {
             .then(response => {
                 toast.info("Conexão realizada com sucesso!");
                 setMsgLogin('connected')
-            }).catch(error => {
+            })
+            .catch(error => {
                 toast.error("Erro de conexão. Verifique o email e a senha cadastrados!");
                 setMsgLogin('connectFail')
             });
