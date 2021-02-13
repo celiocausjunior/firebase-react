@@ -21,14 +21,14 @@ const Login = () => {
         firebase.auth().signInWithEmailAndPassword(email, senha)
             .then(response => {
                 toast.info("Conexão realizada com sucesso!");
-                setMsgLogin('connected');
+                setMsgLogin('success');
                 setTimeout(() => {
                     dispatch({type: 'LOG_IN', userEmail:email});
                 }, 2000);
             })
             .catch(error => {
                 toast.error("Erro de conexão. Verifique o email e a senha cadastrados!");
-                setMsgLogin('connectFail')
+                setMsgLogin('fail')
             });
     }
 
@@ -40,6 +40,7 @@ const Login = () => {
             }
             <form className="form-signin mx-auto">
                 <div className="text-center mb-4">
+                <i class="fas fa-warehouse text-white fa-5x mb-3"></i>
                     <h1 className="h3 mb-3 font-weight-normal text-white font-weight-bold">Login</h1>
                 </div>
 
@@ -50,8 +51,8 @@ const Login = () => {
                 </div>
 
                 <div className="msg-login text-white text-center my-5">
-                    {msglogin === ('connected') && <span><strong>WOW!</strong> You are connected! &#128526;</span>}
-                    {msglogin === ('connectFail') && <span>  <strong>Ops!</strong>  Invalid Email or password! &#128532; </span>}
+                    {msglogin === ('success') && <span><strong>WOW!</strong> You are success! &#128526;</span>}
+                    {msglogin === ('fail') && <span>  <strong>Ops!</strong>  Invalid Email or password! &#128532; </span>}
                 </div>
                 <div className="login-options mt-5">
                     <Link to="/recover" className="mx-2">Recuperar Senha</Link>

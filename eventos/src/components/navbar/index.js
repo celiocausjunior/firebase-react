@@ -14,12 +14,14 @@ const Navbar = () => {
                     <i className="fas fa-bars text-white"></i>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <Link className="fas fa-warehouse text-white fa-2x mb-3" to="/login"></Link>
+
                     <div className="navbar-nav">
 
                         {
                             useSelector(state => state.loggedUser) ?
                                 <>
-                                    <Link to="/home" className="navbar-brand text-white font-weight-bold">Eventos</Link>
+                                    <Link to="/home" className="navbar-brand text-white mx-2 font-weight-bold">Eventos</Link>
 
                                     <Link className="nav-link nav-item" to="/home">Home</Link>
                                     <Link className="nav-link nav-item" to="">Publicar Eventos</Link>
@@ -29,7 +31,7 @@ const Navbar = () => {
                                 :
                                 <>
                                     <Redirect to="/login" />
-                                    <Link className="nav-link nav-item" to="/login">Login</Link>
+                                    <Link className="nav-link nav-item mx-3 fs-4" to="/login">Login</Link>
                                 </>
                         }
                     </div>

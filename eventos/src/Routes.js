@@ -7,6 +7,7 @@ import store from '../src/store'
 
 import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import Recover from './view/recover';
 
 function Routes() {
   return (
@@ -22,6 +23,9 @@ function Routes() {
         <Redirect exact path='/' to='/login' />
         <Route exact path='/login'>
           <Login />
+        </Route>
+        <Route exact path='/recover'>
+          <Recover />
         </Route>
       </Router>
     </Provider>

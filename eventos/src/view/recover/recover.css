@@ -1,0 +1,10 @@
+.btn-send-recover {
+    width: 218px;
+    background-color: #614ea6;
+    color: white;
+}
+
+.btn-send-recover:hover {
+    background-color: #f21667;
+    color: white;
+}
