@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import { toast } from 'react-toastify';
 import firebase from '../../config/firebase';
 import 'firebase/auth';
+import {useSelector, useDispatch} from 'react-redux';
 import './login.css'
+
+
 
 const Login = () => {
 
@@ -11,23 +14,30 @@ const Login = () => {
     const [senha, setSenha] = useState();
     const [msglogin, setMsgLogin] = useState();
 
+    const dispatch = useDispatch();
 
     const logar = () => {
 
         firebase.auth().signInWithEmailAndPassword(email, senha)
             .then(response => {
                 toast.info("Conexão realizada com sucesso!");
-                setMsgLogin('connected')
+                setMsgLogin('connected');
+                setTimeout(() => {
+                    dispatch({type: 'LOG_IN', userEmail:email});
+                }, 2000);
             })
             .catch(error => {
                 toast.error("Erro de conexão. Verifique o email e a senha cadastrados!");
                 setMsgLogin('connectFail')
             });
-
     }
+
 
     return (
         <div className="login-content d-flex align-items-center">
+            {
+            useSelector (state => state.loggedUser) ? <Redirect to="/home" /> : null
+            }
             <form className="form-signin mx-auto">
                 <div className="text-center mb-4">
                     <h1 className="h3 mb-3 font-weight-normal text-white font-weight-bold">Login</h1>
@@ -44,7 +54,7 @@ const Login = () => {
                     {msglogin === ('connectFail') && <span>  <strong>Ops!</strong>  Invalid Email or password! &#128532; </span>}
                 </div>
                 <div className="login-options mt-5">
-                    <a href="#" className="mx-2">Recuperar Senha</a>
+                    <Link to="/recover" className="mx-2">Recuperar Senha</Link>
                     <span className="text-white">&#9733;</span>
                     <Link to="register" className="mx-2">Quero Cadastrar</Link>
                 </div>
