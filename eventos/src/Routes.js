@@ -4,10 +4,11 @@ import Login from "./view/login";
 import Home from "./view/home";
 import Navbar from '../src/components/navbar'
 import store from '../src/store'
+import Recover from './view/recover';
+import EventRegister from './view/event-register';
 
 import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import Recover from './view/recover';
 
 function Routes() {
   return (
@@ -26,6 +27,9 @@ function Routes() {
         </Route>
         <Route exact path='/recover'>
           <Recover />
+        </Route>
+        <Route exact path='/events/register'>
+          <EventRegister />
         </Route>
       </Router>
     </Provider>

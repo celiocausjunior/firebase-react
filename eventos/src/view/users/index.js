@@ -65,7 +65,7 @@ const NewUser = () => {
                             <span class="sr-only"></span>
                         </div>
                         :
-                        <button onClick={register} type="button" className="btn btn-lg btn-block mt-3 mb-5 btn-register-users">Cadastrar</button>
+                        <button onClick={register} type="button" className="btn btn-lg btn-block mt-3 mb-5 btn-register-events">Cadastrar</button>
                 }
                 <div className="msg-login text-black text-center my-5">
                     {msgTipo === ('connected') && <span><strong>WOW!</strong> Usuário cadastrado com sucesso! &#128526;</span>}

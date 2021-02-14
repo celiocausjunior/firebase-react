@@ -1,0 +1,27 @@
+.title{
+    text-align: center;
+}
+
+.btn-register-events{
+    width: 1000px;
+    border-radius: 10px;
+    background-color: #614ea6;
+    color: white;
+}
+
+.btn-register-events:hover{
+    background-color: #f21667;
+    color: white;
+}
+
+.submit-events{
+    justify-content: center;
+    text-align: center;
+}
+
+.upload-button{
+width:300px;
+display:flex;
+border-radius: 10px;
+}
+

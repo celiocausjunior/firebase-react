@@ -21,12 +21,12 @@ const Navbar = () => {
                         {
                             useSelector(state => state.loggedUser) ?
                                 <>
-                                    <Link to="/home" className="navbar-brand text-white mx-2 font-weight-bold">Eventos</Link>
+                                    <Link to="/home" className="navbar-brand text-white mx-2 font-weight-bold">Big Data Senac 2021</Link>
 
                                     <Link className="nav-link nav-item" to="/home">Home</Link>
-                                    <Link className="nav-link nav-item" to="">Publicar Eventos</Link>
-                                    <Link className="nav-link nav-item" to="">Meus Eventos</Link>
-                                    <Link className="nav-link nav-item" onClick={() => dispatch({ type: 'LOG_OUT', })} >Sair</Link>
+                                    <Link className="nav-link nav-item" to="/events/register">Publicar</Link>
+                                    <Link className="nav-link nav-item" to="/events">Minhas Publicacoes</Link>
+                                    <Link className="nav-link nav-item" onClick={() => dispatch({ type: 'LOG_OUT', })} to="/" >Sair</Link>
                                 </>
                                 :
                                 <>
