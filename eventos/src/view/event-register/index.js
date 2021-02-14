@@ -9,20 +9,20 @@ import './event-register.css';
 
 const EventRegister = () => {
 
-    const [userEmail, setUserEmail] = useState();
+    const userEmail = useSelector (state => state.userEmail);
     const [msgTipo, setMsgTipo] = useState();
     const [title, setTitle] = useState();
     const [type, setType] = useState();
     const [details, setDetails] = useState();
     const [midia, setMidia] = useState();
 
+    
 
     const storage = firebase.storage;
  
 
     const db = firebase.firestore;
 
-    setUserEmail(useSelector (state => state.userEmail));
 
     const publish = () => {
         setMsgTipo(null);
