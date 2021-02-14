@@ -25,3 +25,14 @@ display:flex;
 border-radius: 10px;
 }
 
+.spinner-or-publish{
+    justify-content: center;
+    text-align: center;
+    display: flex;
+}
+
+.spinner-icon{
+display:flex;
+justify-content: center;
+text-align: center;
+}

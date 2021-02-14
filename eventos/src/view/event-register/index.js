@@ -13,6 +13,7 @@ const EventRegister = () => {
     const [type, setType] = useState();
     const [details, setDetails] = useState();
     const [midia, setMidia] = useState();
+    const [isLoading, setIsLoading] = useState(false);
 
 
 
@@ -23,6 +24,7 @@ const EventRegister = () => {
 
 
     const publish = () => {
+        setIsLoading(true)
         storage.ref(`BigDataSenacDocuments/${midia.name}`).put(midia)
             .then(() => {
                 db.collection("BigDataSenac2021").add({
@@ -36,8 +38,10 @@ const EventRegister = () => {
                     createdAt: new Date()
                 }).then(() => {
                     toast.info("Publicado com sucesso!");
+                    setIsLoading(false);
                 }).catch(error => {
                     toast.error("Nao foi possivel enviar o arquivo selecionado. Tente novamente.");
+                    setIsLoading(false);
                 });
             });
 
@@ -75,9 +79,20 @@ const EventRegister = () => {
                     <label>Upload do Arquivo:</label>
                     <input onChange={(event) => setMidia(event.target.files[0])} type="file" className="form-control upload-button my-2" required />
                 </div>
+                
+                <div className="spinner-or-publish">
+                {isLoading ?
+                    <div class="spinner-border text-danger spinner-icon" role="status">
+                <span class="sr-only"></span>
+                </div>
+                :
                 <div className="submit-events">
                     <button onClick={publish} type="button" className="btn btn-lg mt-3 btn-block btn-register-events">Publicar</button>
                 </div>
+                }
+                </div>
+            
+                
             </form>
         </div>
     );
