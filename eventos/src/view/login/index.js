@@ -40,7 +40,7 @@ const Login = () => {
             }
             <form className="form-signin mx-auto">
                 <div className="text-center mb-4">
-                <i class="fas fa-warehouse text-white fa-5x mb-3"></i>
+                <i className="fas fa-warehouse text-white fa-5x mb-3"></i>
                     <h1 className="h3 mb-3 font-weight-normal text-white font-weight-bold">Login</h1>
                 </div>
 
