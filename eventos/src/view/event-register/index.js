@@ -18,17 +18,17 @@ const EventRegister = () => {
 
     
 
-    const storage = firebase.storage;
+    const storage = firebase.storage();
  
 
-    const db = firebase.firestore;
+    const db = firebase.firestore();
 
 
     const publish = () => {
         setMsgTipo(null);
         storage.ref(`BigDataSenacDocuments/${midia.name}`).put(midia)
-        .then((response)=>{
-            db.collection('BigDataSenac2021').add({
+        .then(()=>{
+            db.collection("BigDataSenac2021").add({
                 title: title,
                 type: type,
                 details: details,
@@ -37,11 +37,9 @@ const EventRegister = () => {
                 midia: midia.name,
                 public:true,
                 createdAt: new Date()
-            });
+            })
             setMsgTipo('success');
-            toast.info("Publicado com sucesso!")
-
-            
+            toast.info("Publicado com sucesso!");
         })
         .catch(error => {
             setMsgTipo(error);
