@@ -9,7 +9,7 @@ const reduceUser = (state = INITIAL_STATE, action) => {
             return { ...state, loggedUser: true, userEmail: action.userEmail }
 
         case 'LOG_OUT':
-            return { ...state, loggedUser: false, userEmail: '' }
+            return { ...state, loggedUser: false, userEmail: "" }
 
         default:
             return state;
