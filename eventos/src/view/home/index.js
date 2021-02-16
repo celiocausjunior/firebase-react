@@ -9,22 +9,24 @@ const Home = () => {
     const eventList = [];
 
     useEffect(() => {
-        firebase.firestore().collection('BigDataSenac2021').get()
-            .then(response => {
-                response.docs.forEach(doc => {
-                    eventList.push({
-                        id: doc.id,
-                        ...doc.data()
-                    })
+        firebase.firestore().collection("BigDataSenac2021").get()
+            .then(async(snapshot) => {
+                snapshot.docs.forEach(doc => {
+                    console.log(doc.data())
                 })
-                setEvent(eventList);
             })
-    });
+    })
+    
+            
+    
+
+    
+
 
     return (
-        <div className="row">
-            {event.map(item => <Card key={item.id} id={item.id}  img={item.midia} title={item.title} details={item.details} views={item.views} />)}
+        <div>
+            teste
         </div>
-    );
+    )
 }
 export default Home;
