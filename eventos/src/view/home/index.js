@@ -11,18 +11,12 @@ const Home = () => {
     useEffect(() => {
         firebase.firestore().collection("BigDataSenac2021").get()
             .then(async(snapshot) => {
-                snapshot.docs.forEach(doc => {
+              await  snapshot.docs.forEach(doc => {
                     console.log(doc.data())
                 })
             })
-    })
-    
-            
-    
-
-    
-
-
+    },[]);
+        
     return (
         <div>
             teste
