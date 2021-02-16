@@ -5,22 +5,31 @@ import './home.css';
 
 const Home = () => {
 
-    const [event, setEvent] = useState([]);
+    const [eventResponse, setEventResponse] = useState([]);
     const eventList = [];
+
+    console.log(eventList)
+
 
     useEffect(() => {
         firebase.firestore().collection("BigDataSenac2021").get()
-            .then(async(snapshot) => {
-              await  snapshot.docs.forEach(doc => {
-                    console.log(doc.data())
+            .then(async (snapshot) => {
+                await snapshot.docs.forEach(doc => {
+                    eventList.push({
+                        id: doc.id,
+                        ...doc.data
+                    })
                 })
+                setEventResponse(eventList)
             })
-    },[]);
-        
+    }, []);
+
     return (
-        <div>
-            teste
-        </div>
+        <>
+            <div className="row">
+                {eventResponse.map(item => <Card  />)}
+            </div>
+        </>
     )
 }
 export default Home;
